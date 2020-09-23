@@ -21,13 +21,13 @@ Elf32_Phdr *read_exec_file(FILE *opfile)
     elf = (Elf32_Ehdr *)buf;
     memcpy(Phdr, (void *)elf + elf->e_phoff, 32);
     return Phdr;
-}
+}//读取ELF文件的一个文件头？
 
 uint8_t count_kernel_sectors(Elf32_Phdr *Phdr)
 {
     uint8_t sector_num = (Phdr->p_filesz + 511) / 512;
     return sector_num;
-}
+}//返回kernel的占用扇区数量
 
 void write_bootblock(FILE *image, FILE *file, Elf32_Phdr *phdr)
 {
